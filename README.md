@@ -25,5 +25,10 @@ genages.sh
 ----------
 Quick script to generate the random records.  Try `genages.sh -h` for help.
 
-
+ageagg.sh
+---------
+Dirty bash script to aggregate using the CLI pipeline.  Usage:
+```
+./ageagg.sh <filename>
+```
 
