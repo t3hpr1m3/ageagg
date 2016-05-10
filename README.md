@@ -32,3 +32,16 @@ Dirty bash script to aggregate using the CLI pipeline.  Usage:
 ./ageagg.sh <filename>
 ```
 
+ageagg (c++ version)
+--------------------
+A Makefile exists for building this one.  Just `make`, then run `./ageagg
+<filename>`.
+
+Verification
+------------
+I basically used ageagg.sh for comparison, and for overall accuracy, this
+1-liner let me spot check individual values (for instance, age 77):
+```
+$ grep ',77$' records.txt | wc -l
+109
+```
