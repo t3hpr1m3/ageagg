@@ -28,12 +28,6 @@ if [[ ! -f $filename ]]; then
 fi
 
 #
-# Print headers
-#
-printf "Age      Count\n"
-printf "===      =====\n"
-
-#
 # Pipeline to generate unique age counts.
 #
-cut -d ',' -f 2 $filename | sort | uniq -c | sort -k2 -n | awk '{printf "%-8s %s\n", $2, $1}'
+cut -d ',' -f 2 $filename | sort | uniq -c | sort -k2 -n | awk '{printf "%s,%s\n", $2, $1}'
