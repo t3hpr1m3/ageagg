@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -8,7 +9,9 @@
 #include <sys/stat.h>
 #include <vector>
 
-typedef std::map<int,int> age_dict;
+typedef std::vector<int> id_list;
+
+typedef std::map<int,id_list> age_dict;
 
 /*
  * Print program usage.
@@ -71,6 +74,7 @@ int main(int argc, char *argv[]) {
 	std::ifstream input(filename.c_str());
 	std::vector<std::string> elems;
 	int key;
+	int val;
 	for (std::string line; std::getline(input, line);) {
 		//
 		// split the line at the comma
@@ -83,18 +87,25 @@ int main(int argc, char *argv[]) {
 		if (elems.size() >= 2) {
 
 			//
-			// convert age to an int
+			// convert age and id to ints
 			//
 			key = atoi(elems[1].c_str());
+			val = atoi(elems[0].c_str());
 
 			//
-			// If there is already an element matching this age, just
-			// increment its count.  otherwise, add a new one.
+			// Check to see if this age is already in the dict.
 			//
 			if ((age = ages.find(key)) != ages.end()) {
-				age->second++;
+				//
+				// Filter out duplicate user ID's
+				//
+				if (std::find(age->second.begin(), age->second.end(), val) == age->second.end()) {
+					age->second.push_back(val);
+				}
 			} else {
-				ages[key] = 1;
+				id_list ids;
+				ids.push_back(val);
+				ages[key] = ids;
 			}
 		}
 	}
@@ -103,7 +114,7 @@ int main(int argc, char *argv[]) {
 	// Now, print the results
 	//
 	for (age = ages.begin(); age != ages.end(); age++) {
-		std::cout << age->first << ',' << age->second << std::endl;
+		std::cout << age->first << ',' << age->second.size() << std::endl;
 	}
 
 	return 0;
