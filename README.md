@@ -14,9 +14,11 @@ of records belonging to that age.  For example, given the file:
 output would be the following:
 
 ```
-12,1
-13,1
-44,2
+Age      Count
+===      =====
+12       1
+13       1
+44       2
 ```
 
 genages.sh
