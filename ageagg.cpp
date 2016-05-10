@@ -102,10 +102,10 @@ int main(int argc, char *argv[]) {
 	//
 	// Now, print the results
 	//
-	std::cout << std::setw(8) << std::left << "Age" << "Count" << std::endl;
-	std::cout << std::setw(8) << std::left << "===" << "=====" << std::endl;
+	std::cout << std::setw(9) << std::left << "Age" << "Count" << std::endl;
+	std::cout << std::setw(9) << std::left << "===" << "=====" << std::endl;
 	for (age = ages.begin(); age != ages.end(); age++) {
-		std::cout << std::setw(8) << std::left << age->first << age->second << std::endl;
+		std::cout << std::setw(9) << std::left << age->first << age->second << std::endl;
 	}
 
 	return 0;
